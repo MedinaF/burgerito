@@ -61,11 +61,18 @@ Chaque page est un composant autonome (standalone component) chargé à la deman
 
 ###### Justification des choix techniques
 | **Standalone components** | Chaque page (`HomeComponent`, `CartComponent`, `ProfileComponent`, etc.) est autonome. Cela simplifie le lazy loading dans `app.routes.ts` et évite des modules Angular supplémentaires, ce qui améliore la lisibilité et la maintenance. |
+
 | **Services** | `AuthService`, `ProductService`, `CartService` et `OrderService` centralisent la logique métier (récupération API, cache, gestion du localStorage). Les composants restent concentrés sur l'UI et bénéficient d'une réutilisabilité accrue. |
+
 | **Guard** | `authGuard` assure que la session est restaurée avant d'accéder au profil. Il renvoie vers `/login` avec `redirectTo`, garantissant la sécurité d'accès aux routes protégées. |
+
 | **Interceptor** | `authInterceptor` ajoute l'entête JWT uniquement pour les URLs de l'API (`API_BASE_URL`). L'ajout est centralisé et transparent pour tous les services. |
+
 | **Pipe** | `PricePipe` fournit un formatage monétaire cohérent (locale `fr-FR`, EUR) utilisé dans tout le projet (catalogue, panier, profil, confirmation). |
+
 | **DTOs & Mappers** | Les interfaces `ProductDto`, `OrderDto`, `AuthResponseDto`, etc., décrivent les structures brutes de l'API. Les mappers (`mapProductDto`, `mapOrderDto`, `mapUserDto`) traduisent ces DTOs vers des modèles métiers uniformes (`Product`, `Order`, `User`) pour isoler l'UI des changements d'API et centraliser les conversions (ex. `_id` → `id`). |
+
 | **Organisation** | Séparation `core/` (métier + accès données), `features/` (pages), `shared/` (UI réutilisable) et `app.*` (layout global). Cette architecture clarifie les responsabilités et facilite l'évolution (ajout d'une nouvelle page, remplacement de l'API...). |
+
 | **Gestion du panier** | `CartService` stocke uniquement des IDs (exigence du sujet) et expose des signaux permettant aux composants d'écouter les changements en temps réel sans librairie de state management externe. |
 
