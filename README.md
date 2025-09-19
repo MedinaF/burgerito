@@ -6,15 +6,10 @@ Application Angular qui reproduit la maquette « Burgerito » et consomme l'API 
 
 ```bash
 npm install
-npm start
+ng seve
 ```
-> L’API Node (JWT) est hébergée : `https://node-eemi.vercel.app`.  
-
-L'application est disponible sur `http://localhost:4200`. Les tests unitaires s'exécutent avec :
-
-```bash
-npm test
-```
+L’API Node (JWT) est hébergée : `https://node-eemi.vercel.app`.  
+L'application est disponible sur `http://localhost:4200`.
 
 ### Fonctionnalités principales
 
