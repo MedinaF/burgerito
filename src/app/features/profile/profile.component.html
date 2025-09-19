@@ -1,0 +1,46 @@
+<section class="container">
+  <a routerLink="/" class="back">← Retour à l'accueil</a>
+
+  <header class="hero">
+    <h1>{{ user()?.name || 'Mon profil' }}</h1>
+    <p>Retrouvez ici l'historique de vos commandes.</p>
+    <div class="actions">
+      <a class="btn ghost" routerLink="/">Commander un burger</a>
+      <button class="btn primary" type="button" routerLink="/cart">Voir mon panier</button>
+    </div>
+  </header>
+
+  <div class="alert error" *ngIf="error()">{{ error() }}</div>
+
+  <ng-container *ngIf="!isLoading(); else loading">
+    <ng-container *ngIf="orders().length > 0; else empty">
+      <section class="group" *ngFor="let group of groupedOrders()">
+        <h2>{{ group.date }}</h2>
+        <div class="orders">
+          <article class="order" *ngFor="let order of group.orders">
+            <div class="order__header">
+              <span class="order__id">Commande #{{ order.id.slice(-6) }}</span>
+              <span class="order__total">{{ orderTotal(order) | price }}</span>
+            </div>
+            <ul class="order__items">
+              <li *ngFor="let item of order.items">{{ item.product.name }}</li>
+            </ul>
+            <p class="order__hint">Détails complets disponibles prochainement.</p>
+          </article>
+        </div>
+      </section>
+    </ng-container>
+  </ng-container>
+</section>
+
+<ng-template #loading>
+  <div class="loading">Chargement de vos commandes…</div>
+</ng-template>
+
+<ng-template #empty>
+  <div class="empty">
+    <h2>Vous n'avez pas encore passé de commande</h2>
+    <p>Ajoutez vos burgers favoris au panier pour lancer votre première commande.</p>
+    <a class="btn primary" routerLink="/">Découvrir le menu</a>
+  </div>
+</ng-template>

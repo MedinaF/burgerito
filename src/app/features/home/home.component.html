@@ -1,0 +1,64 @@
+<section
+  class="hero"
+  [class.hero--with-background]="!!highlightProduct()"
+  [style.--hero-background-image]="highlightProduct() ? 'url(' + highlightProduct()!.image + ')' : 'none'"
+>
+  <div class="content">
+    <div class="hero__text">
+      <p class="hero__description">
+        Lorem ipsum dolor sit amet consectetur. Velit net nisl tristique facilisis egestas condimentum massa.
+        Maecenas vel facilisis arcu turpis nunc.
+      </p>
+      <h1 class="hero__title">BURGERITO</h1>
+    </div>
+  </div>
+</section>
+
+<section class="product-list">
+  <div class="section-header">
+    <h2>Nos burgers</h2>
+    <p>Découvrez nos recettes généreuses, préparées avec des ingrédients frais et savoureux.</p>
+  </div>
+
+  <div class="feedback" *ngIf="feedback()">{{ feedback() }}</div>
+  <div class="error" *ngIf="error()">{{ error() }}</div>
+  <div class="grid" *ngIf="!isLoading(); else loading">
+    <ng-container *ngIf="products().length > 0; else empty">
+      <article class="card" *ngFor="let product of products(); trackBy: trackByProductId">
+        <div class="card__image-wrapper">
+          <img [src]="product.image" [alt]="product.name" />
+          <span class="badge" *ngIf="!product.isAvailable">Indisponible</span>
+        </div>
+        <div class="card__body">
+          <h3>{{ product.name }}</h3>
+          <p>{{ product.description }}</p>
+        </div>
+        <div class="card__footer">
+          <span class="price">{{ product.price | price }}</span>
+          <div class="card__actions">
+            <a class="btn ghost" [routerLink]="['/products', product.id]">Voir détail</a>
+            <button
+              class="btn primary"
+              type="button"
+              [disabled]="!product.isAvailable"
+              (click)="addToCart(product)"
+            >
+              Ajouter au panier
+            </button>
+          </div>
+        </div>
+      </article>
+    </ng-container>
+  </div>
+</section>
+
+<ng-template #empty>
+  <div class="empty-state">
+    <h3>Les burgers sont en préparation…</h3>
+    <p>Revenez plus tard pour découvrir notre sélection.</p>
+  </div>
+</ng-template>
+
+<ng-template #loading>
+  <div class="loading">Chargement des burgers…</div>
+</ng-template>

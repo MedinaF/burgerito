@@ -1,0 +1,43 @@
+<section class="auth-container">
+  <header>
+    <h1>Je m'inscris</h1>
+    <p>Créez votre compte pour commander vos burgers favoris.</p>
+  </header>
+
+  <form [formGroup]="form" (ngSubmit)="submit()" novalidate>
+    <div class="field" [class.invalid]="form.controls.name.invalid && form.controls.name.touched">
+      <label for="name">Nom</label>
+      <input id="name" type="text" formControlName="name" placeholder="Votre prénom" />
+      <small *ngIf="form.controls.name.invalid && form.controls.name.touched">
+        Indiquez votre nom (au moins 2 caractères).
+      </small>
+    </div>
+
+    <div class="field" [class.invalid]="form.controls.email.invalid && form.controls.email.touched">
+      <label for="email">E-mail</label>
+      <input id="email" type="email" formControlName="email" placeholder="vous@example.com" />
+      <small *ngIf="form.controls.email.invalid && form.controls.email.touched">
+        Indiquez une adresse e-mail valide.
+      </small>
+    </div>
+
+    <div class="field" [class.invalid]="form.controls.password.invalid && form.controls.password.touched">
+      <label for="password">Mot de passe</label>
+      <input id="password" type="password" formControlName="password" placeholder="••••••••" />
+      <small *ngIf="form.controls.password.invalid && form.controls.password.touched">
+        Utilisez au moins 6 caractères.
+      </small>
+    </div>
+
+    <div class="form-error" *ngIf="error()">{{ error() }}</div>
+
+    <button class="btn primary" type="submit" [disabled]="isSubmitting()">
+      {{ isSubmitting() ? 'Création en cours…' : 'Confirmer' }}
+    </button>
+  </form>
+
+  <p class="alt">
+    Vous avez déjà un compte ?
+    <a routerLink="/login">Je me connecte</a>
+  </p>
+</section>

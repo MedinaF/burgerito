@@ -1,0 +1,52 @@
+{
+  "items": [
+    {
+      "_id": "classic-burger",
+      "name": "Classic Burger",
+      "description": "Steak haché de bœuf, cheddar affiné, salade croquante, tomates et sauce maison.",
+      "image": "https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=800&q=80",
+      "price": 8.5,
+      "isAvailable": true
+    },
+    {
+      "_id": "bacon-lover",
+      "name": "Bacon Lover",
+      "description": "Double bacon caramélisé, oignons confits et cheddar fumé sur pain brioché.",
+      "image": "https://images.unsplash.com/photo-1606755962773-0e7d16c318f3?auto=format&fit=crop&w=800&q=80",
+      "price": 9.9,
+      "isAvailable": true
+    },
+    {
+      "_id": "spicy-fiesta",
+      "name": "Spicy Fiesta",
+      "description": "Poulet croustillant, sauce chipotle, guacamole frais et jalapeños.",
+      "image": "https://images.unsplash.com/photo-1499028344343-cd173ffc68a9?auto=format&fit=crop&w=800&q=80",
+      "price": 9.4,
+      "isAvailable": true
+    },
+    {
+      "_id": "veggie-garden",
+      "name": "Veggie Garden",
+      "description": "Galette de pois chiches, légumes grillés, houmous citronné et roquette.",
+      "image": "https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?auto=format&fit=crop&w=800&q=80",
+      "price": 8.2,
+      "isAvailable": true
+    },
+    {
+      "_id": "blue-cheese",
+      "name": "Blue Cheese Deluxe",
+      "description": "Steak maturé, bleu d’Auvergne, poires rôties et noix croquantes.",
+      "image": "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=800&q=80",
+      "price": 10.5,
+      "isAvailable": false
+    },
+    {
+      "_id": "truffle-supreme",
+      "name": "Truffle Supreme",
+      "description": "Bœuf Angus, crème de truffe noire, champignons sautés et comté fondant.",
+      "image": "https://images.unsplash.com/photo-1508739773434-c26b3d09e071?auto=format&fit=crop&w=800&q=80",
+      "price": 12.9,
+      "isAvailable": true
+    }
+  ]
+}

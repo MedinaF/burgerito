@@ -1,0 +1,144 @@
+.app-header {
+  border-bottom: 1px solid var(--color-border);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: rgba(12, 12, 12, 0.9);
+  backdrop-filter: blur(12px);
+}
+
+.header__container {
+  margin: 0 auto;
+  max-width: var(--content-max-width);
+  padding: 1.5rem 2rem;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-primary);
+  line-height: 1;
+}
+
+.logo img {
+  display: block;
+  height: 48px;
+  width: auto;
+  border-radius: 12px;
+}
+
+.header__nav {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  flex: 1;
+}
+
+.header__nav a {
+  color: var(--color-text-muted);
+  font-weight: 500;
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.header__nav a:hover,
+.header__nav a.active {
+  color: var(--color-text);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.header__actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.cart {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 600;
+  padding: 0.5rem 0.75rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.cart__badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 999px;
+  background: var(--color-primary);
+  color: #111;
+  font-size: 0.85rem;
+}
+
+.welcome {
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+}
+
+.app-main {
+  min-height: calc(100vh - 180px);
+  padding: 3rem 2rem 5rem;
+}
+
+.app-footer {
+  border-top: 1px solid var(--color-border);
+  padding: 2rem 0;
+  background: rgba(12, 12, 12, 0.95);
+}
+
+.footer__container {
+  max-width: var(--content-max-width);
+  margin: 0 auto;
+  padding: 0 2rem;
+  color: var(--color-text-muted);
+  font-size: 0.85rem;
+  text-align: center;
+}
+
+@media (max-width: 960px) {
+  .header__container {
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .header__nav {
+    order: 2;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .header__actions {
+    width: 100%;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+  }
+
+  .app-main {
+    padding: 2rem 1.5rem 4rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .header__container {
+    padding: 1.25rem 1.25rem 1rem;
+  }
+
+  .header__actions {
+    justify-content: center;
+  }
+
+  .app-main {
+    padding: 2rem 1rem 3rem;
+  }
+}

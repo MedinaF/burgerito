@@ -1,0 +1,62 @@
+<section class="container">
+  <a routerLink="/" class="back">← Retour à l'accueil</a>
+
+  <ng-container *ngIf="!isLoading(); else loading">
+    <ng-container *ngIf="product() as burger; else errorState">
+      <header class="heading">
+        <h1>{{ burger.name }}</h1>
+      </header>
+      <div class="layout">
+        <div class="image" [style.background-image]="'url(' + burger.image + ')'" aria-hidden="true">
+          <span class="badge" *ngIf="!burger.isAvailable">Produit indisponible</span>
+        </div>
+        <div class="details">
+          <h2>Description</h2>
+          <p>{{ burger.description }}</p>
+          <div class="price">{{ burger.price | price }}</div>
+          <div class="actions">
+            <button class="btn primary" type="button" [disabled]="!burger.isAvailable" (click)="addToCart(burger)">
+              Ajouter au panier
+            </button>
+            <button class="btn ghost" type="button" routerLink="/cart">Voir mon panier</button>
+          </div>
+        </div>
+      </div>
+
+      <section class="related" *ngIf="relatedProducts().length > 0">
+        <h2>Nos autres propositions</h2>
+        <div class="list">
+          <article class="card" *ngFor="let related of relatedProducts()">
+            <div class="thumbnail" [style.background-image]="'url(' + related.image + ')'" aria-hidden="true"></div>
+            <div class="info">
+              <h3>{{ related.name }}</h3>
+              <p>{{ related.price | price }}</p>
+            </div>
+            <div class="card__actions">
+              <a class="btn ghost" [routerLink]="['/products', related.id]">Voir détail</a>
+              <button
+                class="btn primary"
+                type="button"
+                [disabled]="!related.isAvailable"
+                (click)="addToCart(related)"
+              >
+                Ajouter
+              </button>
+            </div>
+          </article>
+        </div>
+      </section>
+    </ng-container>
+  </ng-container>
+</section>
+
+<ng-template #loading>
+  <div class="container loading">Chargement du burger…</div>
+</ng-template>
+
+<ng-template #errorState>
+  <div class="error">
+    <p>{{ error() }}</p>
+    <a routerLink="/" class="btn primary">Retour à l'accueil</a>
+  </div>
+</ng-template>

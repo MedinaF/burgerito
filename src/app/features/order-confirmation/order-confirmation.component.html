@@ -1,0 +1,12 @@
+<section class="confirmation">
+  <div class="card">
+    <div class="icon" aria-hidden="true">{{ view.icon }}</div>
+    <h1>{{ view.title }}</h1>
+    <p class="message" *ngIf="view.message">{{ view.message }}</p>
+    <div class="details" *ngIf="state.orderId || state.total">
+      <p *ngIf="state.orderId">Référence commande : <strong>#{{ state.orderId.slice(-6) }}</strong></p>
+      <p *ngIf="state.total">Montant : <strong>{{ state.total | price }}</strong></p>
+    </div>
+    <a class="btn primary" routerLink="/">Retour à l'accueil</a>
+  </div>
+</section>

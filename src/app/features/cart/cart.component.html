@@ -1,0 +1,51 @@
+<section class="container">
+  <a routerLink="/" class="back">← Retour à l'accueil</a>
+
+  <h1>Panier</h1>
+
+  <div class="alert info" *ngIf="info()">{{ info() }}</div>
+  <div class="alert error" *ngIf="error()">{{ error() }}</div>
+
+  <div class="layout" *ngIf="cartItems().length > 0; else empty">
+    <div class="items">
+      <article class="item" *ngFor="let item of cartItems()">
+        <div class="visual" [style.background-image]="item.product ? 'url(' + item.product.image + ')' : 'none'"></div>
+        <div class="details">
+          <h2>{{ item.product?.name ?? 'Burger indisponible' }}</h2>
+          <p class="price" *ngIf="item.product">{{ item.product.price | price }}</p>
+          <p class="warning" *ngIf="item.unavailable">
+            Ce burger n'est plus disponible. Retirez-le pour continuer.
+          </p>
+        </div>
+        <button class="btn danger" type="button" (click)="removeItem(item.index)">Supprimer</button>
+      </article>
+    </div>
+
+    <aside class="summary">
+      <div class="summary__card">
+        <h3>Récapitulatif</h3>
+        <dl>
+          <div class="row">
+            <dt>Burgers</dt>
+            <dd>{{ cartItems().length }}</dd>
+          </div>
+          <div class="row total">
+            <dt>Total</dt>
+            <dd>{{ total() | price }}</dd>
+          </div>
+        </dl>
+        <button class="btn primary" type="button" [disabled]="isSubmitting()" (click)="submitOrder()">
+          {{ isSubmitting() ? 'Commande en cours…' : 'Commander' }}
+        </button>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<ng-template #empty>
+  <div class="empty">
+    <h2>Votre panier est vide</h2>
+    <p>Ajoutez vos burgers préférés pour commencer votre commande.</p>
+    <a routerLink="/" class="btn primary">Découvrir les burgers</a>
+  </div>
+</ng-template>
